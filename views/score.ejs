@@ -1,12 +1,12 @@
 <%- include('./_includes/header', { 
-        title: `${locals.custom.title} | ${score.name}`,
+        title: `${locals.custom.title} | ${score.forename}`,
         description: `I made a score of ${score.value} on ${locals.custom.title}` 
     }); 
 -%>
     <main class="highscore__main highscore__main--left">
         <div class="highscore__text">
             <p class="highscore__label"><span>#</span><%= score.rank %></p>
-            <p class="highscore__data"><%= score.name %></p>
+            <p class="highscore__data"><%= score.forename %> <%= score.surname %></p>
         </div>
 
         <div class="highscore__text">

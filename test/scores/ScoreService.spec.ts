@@ -23,28 +23,28 @@ describe('ScoreService', () => {
 
     beforeAll(async () => {
       score = await new ScoreModel({
-        name: 'Player 0',
+        forename: 'Player 0',
         value: 0,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 1',
+        forename: 'Player 1',
         session: 'fakesession',
         value: 200,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 2',
+        forename: 'Player 2',
         value: 5,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 3',
+        forename: 'Player 3',
         value: 2000,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 4',
+        forename: 'Player 4',
         value: 1500,
         category: 'hard',
       }).save();
@@ -55,13 +55,13 @@ describe('ScoreService', () => {
     it('should get the complete leaderboard', async () => {
       const scores = await service.getScores();
 
-      expect(scores[0].name).toEqual('Player 3');
+      expect(scores[0].forename).toEqual('Player 3');
       expect(scores[0].rank).toEqual(1);
 
-      expect(scores[1].name).toEqual('Player 1');
+      expect(scores[1].forename).toEqual('Player 1');
       expect(scores[1].rank).toEqual(2);
 
-      expect(scores[2].name).toEqual('Player 2');
+      expect(scores[2].forename).toEqual('Player 2');
       expect(scores[2].rank).toEqual(3);
     });
 
@@ -70,17 +70,17 @@ describe('ScoreService', () => {
 
       expect(scores.length).toEqual(2);
 
-      expect(scores[0].name).toEqual('Player 3');
+      expect(scores[0].forename).toEqual('Player 3');
       expect(scores[0].rank).toEqual(1);
 
-      expect(scores[1].name).toEqual('Player 1');
+      expect(scores[1].forename).toEqual('Player 1');
       expect(scores[1].rank).toEqual(2);
     });
 
     it('should skip the first score', async () => {
       const scores = await service.getScores({ skip: 1 });
 
-      expect(scores[0].name).toEqual('Player 1');
+      expect(scores[0].forename).toEqual('Player 1');
       expect(scores[0].rank).toEqual(2);
     });
 
@@ -89,10 +89,10 @@ describe('ScoreService', () => {
 
       expect(scores.length).toEqual(2);
 
-      expect(scores[0].name).toEqual('Player 1');
+      expect(scores[0].forename).toEqual('Player 1');
       expect(scores[0].rank).toEqual(2);
 
-      expect(scores[1].name).toEqual('Player 2');
+      expect(scores[1].forename).toEqual('Player 2');
       expect(scores[1].rank).toEqual(3);
     });
 
@@ -101,7 +101,7 @@ describe('ScoreService', () => {
 
       expect(scores.length).toEqual(1);
 
-      expect(scores[0].name).toEqual('Player 4');
+      expect(scores[0].forename).toEqual('Player 4');
       expect(scores[0].rank).toEqual(1);
     });
 
@@ -111,7 +111,7 @@ describe('ScoreService', () => {
 
       expect(scores.length).toEqual(1);
 
-      expect(scores[0].name).toEqual('Player 0');
+      expect(scores[0].forename).toEqual('Player 0');
       expect(scores[0].rank).toEqual(4);
     });
 
@@ -120,7 +120,7 @@ describe('ScoreService', () => {
 
       expect(scores.length).toEqual(1);
 
-      expect(scores[0].name).toEqual('Player 1');
+      expect(scores[0].forename).toEqual('Player 1');
       expect(scores[0].rank).toEqual(2);
     });
   });
@@ -130,17 +130,17 @@ describe('ScoreService', () => {
 
     beforeAll(async () => {
       await new ScoreModel({
-        name: 'Player 0',
+        forename: 'Player 0',
         value: 0,
       }).save();
 
       testScore = await new ScoreModel({
-        name: 'Player 1',
+        forename: 'Player 1',
         value: 200,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 2',
+        forename: 'Player 2',
         value: 5,
       }).save();
     });
@@ -159,7 +159,7 @@ describe('ScoreService', () => {
       const score = await service.getScore(testScore._id);
 
       expect(score).toMatchObject({
-        name: 'Player 1',
+        forename: 'Player 1',
         value: 200,
         rank: 1,
       });
@@ -169,27 +169,27 @@ describe('ScoreService', () => {
   describe('#addScore()', () => {
     beforeAll(async () => {
       await new ScoreModel({
-        name: 'Player 0',
+        forename: 'Player 0',
         value: 0,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 1',
+        forename: 'Player 1',
         value: 200,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 2',
+        forename: 'Player 2',
         value: 5,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 3',
+        forename: 'Player 3',
         value: 2000,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 4',
+        forename: 'Player 4',
         value: 1500,
         category: 'hard',
       }).save();
@@ -199,18 +199,18 @@ describe('ScoreService', () => {
 
     it('should throw an error if score is invalid', async () => {
       expect(async () => {
-        await service.addScore({ name: 'wrong' });
+        await service.addScore({ forename: 'wrong' });
       }).rejects.toThrow('Score validation failed: value: Path `value` is required.');
     });
 
     it('should create a score for the main leaderboard', async () => {
       const score = await service.addScore({
-        name: 'New Player',
+        forename: 'New Player',
         value: 1750,
       });
 
       expect(score).toMatchObject({
-        name: 'New Player',
+        forename: 'New Player',
         value: 1750,
         rank: 2,
       });
@@ -218,13 +218,13 @@ describe('ScoreService', () => {
 
     it('should create a score for the hard leaderboard', async () => {
       const score = await service.addScore({
-        name: 'New Player',
+        forename: 'New Player',
         value: 1000,
         category: 'hard',
       });
 
       expect(score).toMatchObject({
-        name: 'New Player',
+        forename: 'New Player',
         value: 1000,
         category: 'hard',
         rank: 2,
@@ -233,7 +233,7 @@ describe('ScoreService', () => {
 
     it('should create a score with a meta field', async () => {
       const score = await service.addScore({
-        name: 'New Player',
+        forename: 'New Player',
         value: 1600,
         meta: {
           level: 45,
@@ -241,7 +241,7 @@ describe('ScoreService', () => {
       });
 
       expect(score).toMatchObject({
-        name: 'New Player',
+        forename: 'New Player',
         value: 1600,
         rank: 3,
         meta: {
@@ -256,17 +256,17 @@ describe('ScoreService', () => {
 
     beforeAll(async () => {
       await new ScoreModel({
-        name: 'Player 0',
+        forename: 'Player 0',
         value: 0,
       }).save();
 
       testScore = await new ScoreModel({
-        name: 'Player 1',
+        forename: 'Player 1',
         value: 200,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 2',
+        forename: 'Player 2',
         value: 5,
       }).save();
     });
@@ -276,7 +276,7 @@ describe('ScoreService', () => {
     it('should update and return nothing if score does not exist', async () => {
       const fakeId = new mongoose.Types.ObjectId();
       const score = await service.updateScore(fakeId.toString(), {
-        name: 'fake',
+        forename: 'fake',
       });
 
       expect(score).toBeUndefined();
@@ -285,11 +285,12 @@ describe('ScoreService', () => {
     it('should update a score', async () => {
       // eslint-disable-next-line no-underscore-dangle
       const newScore = await service.updateScore(testScore._id.toString(), {
-        name: 'Updated Player 1',
+        forename: 'Updated Player 1',
+        surname: 'Updated Player 1',
       });
 
       expect(newScore).toMatchObject({
-        name: 'Updated Player 1',
+        forename: 'Updated Player 1',
         value: 200,
         rank: 1,
       });
@@ -301,7 +302,7 @@ describe('ScoreService', () => {
 
     beforeAll(async () => {
       testScore = await new ScoreModel({
-        name: 'Player 1',
+        forename: 'Player 1',
         value: 200,
       }).save();
     });
@@ -326,51 +327,51 @@ describe('ScoreService', () => {
   describe('#getNumberOfPages()', () => {
     beforeAll(async () => {
       await new ScoreModel({
-        name: 'Player 0',
+        forename: 'Player 0',
         value: 0,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 1',
+        forename: 'Player 1',
         value: 200,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 2',
+        forename: 'Player 2',
         value: 5,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 3',
+        forename: 'Player 3',
         value: 2000,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 4',
+        forename: 'Player 4',
         value: 1500,
         category: 'hard',
       }).save();
 
       await new ScoreModel({
-        name: 'Player 5',
+        forename: 'Player 5',
         value: 1500,
         category: 'hard',
       }).save();
 
       await new ScoreModel({
-        name: 'Player 6',
+        forename: 'Player 6',
         value: 1508,
         category: 'hard',
       }).save();
 
       await new ScoreModel({
-        name: 'Player 7',
+        forename: 'Player 7',
         value: 1300,
         category: 'hard',
       }).save();
 
       await new ScoreModel({
-        name: 'Player 8',
+        forename: 'Player 8',
         value: 15000,
         category: 'hard',
       }).save();

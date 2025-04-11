@@ -14,7 +14,7 @@
                 <div class="score__name">
                     <div class="score__position"><%= score.rank %></div>
                     <div class="score__info">
-                        <p><%= score.name %></p>
+                        <p><%= score.forename %> <%= score.surname %></p>
                         <p class="score__date"><%= $day(score.createdAt).fromNow() %></p>
                     </div>
                 </div>

@@ -2,12 +2,12 @@
 
 :root {
   --highscore-logo-height: 115px;
-  --highscore-logo-width: 115px;
+  --highscore-logo-width: 250px;
 
-  --highscore-primary-rgb: 94, 216, 255;
-  --highscore-secondary-rgb: 22, 86, 146;
+  --highscore-primary-rgb: 56, 72, 53;
+  --highscore-secondary-rgb: 25, 34, 24;
   --highscore-white-rgb: 255, 255, 255;
-  --highscore-text-rgb: 0, 0, 0;
+  --highscore-text-rgb: 133, 237, 99;
 
   --highscore-primary-color: rgb(var(--highscore-primary-rgb));
   --highscore-secondary-color: rgb(var(--highscore-secondary-rgb));
@@ -15,10 +15,10 @@
   --highscore-text-color: rgb(var(--highscore-text-rgb));
 
   --highscore-text-gradient-color: linear-gradient(90deg, var(--highscore-white-color) 0%, rgba(255, 255, 255, 0.12) 100%);
-  --highscore-score-gradient-color: linear-gradient(90deg, var(--highscore-white-color) 0%, rgba(var(--highscore-white-rgb), 0.1) 79.84%);
-  --highscore-gradient-color: linear-gradient(112.23deg, var(--highscore-primary-color) 0%, var(--highscore-secondary-color) 103.45%);
+  --highscore-score-gradient-color: linear-gradient(90deg, var(--highscore-white-rgb) 0%, rgba(var(--highscore-text-color), 0.1) 79.84%);
+  --highscore-gradient-color: linear-gradient(100deg, var(--highscore-primary-color) 0%, var(--highscore-secondary-color) 103.45%);
 
-  --highscore-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  --highscore-shadow: 0px 8px 8px rgb(0 0 0 / 40%);
 }
 
 * {
@@ -82,7 +82,7 @@ a {
 }
 
 .highscore__title {
-  font-style: normal;
+  font-style: italic;
   font-weight: 800;
   font-size: 40px;
   text-shadow: var(--highscore-shadow);
@@ -99,7 +99,7 @@ a {
   font-weight: 800;
   font-size: 64px;
   text-transform: uppercase;
-  color: var(--highscore-white-color);
+  color: var(--highscore-text-color);
   text-shadow: var(--highscore-shadow);
   margin-bottom: 0.4em;
 }
@@ -135,7 +135,7 @@ a {
 
 .highscore__main--privacy {
   align-items: flex-start;
-  color: var(--highscore-white-color);
+  color: var(--highscore-text-color);
 }
 
 .highscore__main--privacy li {
@@ -184,7 +184,7 @@ a {
   font-size: 64px;
   text-transform: uppercase;
   overflow-wrap: anywhere;
-  color: var(--highscore-white-color);
+  color: var(--highscore-text-color);
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -223,7 +223,8 @@ a {
   background-color: var(--highscore-primary-color);
 }
 
-.score__name, .score__value {
+.score__name,
+.score__value {
   display: flex;
   font-weight: 800;
   font-size: 24px;
@@ -260,7 +261,8 @@ a {
   margin-top: 50px;
 }
 
-.pagination__link, .share {
+.pagination__link,
+.share {
   color: var(--highscore-white-color);
   text-decoration: none;
   font-weight: bold;
@@ -279,7 +281,8 @@ a {
   cursor: not-allowed;
 }
 
-.pagination__link[href]:hover, .share:hover {
+.pagination__link[href]:hover,
+.share:hover {
   background-color: var(--highscore-white-color);
   color: var(--highscore-primary-color);
 }
@@ -317,14 +320,14 @@ a {
   box-shadow: 0 0 20px var(--highscore-white-color);
 }
 
-@media (max-width: 576px) { 
+@media (max-width: 576px) {
   .highscore__header {
     padding: 0.5em;
   }
-  
+
   .highscore__logo {
-    width: calc(var(--highscore-logo-width) / 1.5);
-    height: calc(var(--highscore-gradient-color) / 1.5);
+    width: calc(--highscore-logo-width);
+    height: calc(--highscore-gradient-color);
   }
 
   .highscore__brand {
@@ -358,7 +361,7 @@ a {
 
   .highscore__leaderboard {
     font-size: 32px;
-  }  
+  }
 
   .highscore__category {
     font-size: 20px;
@@ -377,7 +380,8 @@ a {
     font-size: 46px;
   }
 
-  .score__name, .score__value {
+  .score__name,
+  .score__value {
     font-size: 20px;
   }
 
@@ -389,7 +393,7 @@ a {
     font-size: 27px;
     margin: 0 15px 0px 2px;
   }
-  
+
   .share {
     width: 100%;
     font-size: 36px;

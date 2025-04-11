@@ -17,7 +17,12 @@ export class Score {
   @Required()
   @Property()
   @Groups('read', 'create', 'update')
-  public name: string;
+  public forename: string;
+
+  @Required()
+  @Property()
+  @Groups('read', 'create', 'update')
+  public surname: string;
 
   @Required()
   @Property()
