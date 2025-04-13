@@ -17,7 +17,7 @@ export class ScoreController {
   @Inject(ScoreService)
   private scoreService: ScoreService;
 
-  @Get()
+  @Get('/all')
   @Returns(200, Array).Of(Score).Groups('read')
   public get(
     @QueryParams() query?: ScoreHttpQuery,

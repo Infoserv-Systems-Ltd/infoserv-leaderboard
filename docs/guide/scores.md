@@ -23,7 +23,7 @@ curl -X 'POST' \
   'http://localhost:8081/api/scores' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
-  -d '{ "forename": "First name", "Surname": "Last name", "value": 1000 }'
+  -d '{ "forename": "First name", "surname": "Last name", "value": 1000 }'
 ```
 
 This will return a response indicating whether the score was successfully added to the leaderboard.
