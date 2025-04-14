@@ -27,7 +27,12 @@ export class Score {
   @Required()
   @Property()
   @Groups('read', 'create', 'update')
-  public value: number;
+  public contact_info: string;
+
+  @Required()
+  @Property()
+  @Groups('read', 'create', 'update')
+  public score: number;
 
   @Groups('read')
   public rank: number;

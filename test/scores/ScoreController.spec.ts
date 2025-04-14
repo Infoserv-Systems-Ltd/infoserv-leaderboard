@@ -21,29 +21,29 @@ describe('ScoreController', () => {
   describe('GET /api/scores', () => {
     beforeAll(async () => {
       await new ScoreModel({
-        name: 'Player 0',
-        value: 0,
+        forename: 'Player 0',
+        score: 0,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 1',
+        forename: 'Player 1',
         session: 'fakesession',
-        value: 200,
+        score: 200,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 2',
-        value: 5,
+        forename: 'Player 2',
+        score: 5,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 3',
-        value: 2000,
+        forename: 'Player 3',
+        score: 2000,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 4',
-        value: 1500,
+        forename: 'Player 4',
+        score: 1500,
         category: 'hard',
       }).save();
     });
@@ -103,30 +103,30 @@ describe('ScoreController', () => {
 
     beforeAll(async () => {
       await new ScoreModel({
-        name: 'Player 0',
-        value: 0,
+        forename: 'Player 0',
+        score: 0,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 1',
-        value: 200,
+        forename: 'Player 1',
+        score: 200,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 2',
-        value: 5,
+        forename: 'Player 2',
+        score: 5,
       }).save();
 
       const { header } = await request.post('/api/scores').send({
-        name: 'My score 1',
-        value: 1750,
+        forename: 'My score 1',
+        score: 1750,
       });
 
       cookies = header['set-cookie'];
 
       await request.post('/api/scores').send({
-        name: 'My score 2',
-        value: 3,
+        forename: 'My score 2',
+        score: 3,
       }).set('Cookie', cookies);
     });
 
@@ -139,12 +139,12 @@ describe('ScoreController', () => {
 
       expect(status).toEqual(200);
       expect(body).toMatchObject([{
-        name: 'My score 1',
-        value: 1750,
+        forename: 'My score 1',
+        score: 1750,
         rank: 1,
       }, {
-        name: 'My score 2',
-        value: 3,
+        forename: 'My score 2',
+        score: 3,
         rank: 4,
       }]);
     });
@@ -155,18 +155,18 @@ describe('ScoreController', () => {
 
     beforeAll(async () => {
       await new ScoreModel({
-        name: 'Player 0',
-        value: 0,
+        forename: 'Player 0',
+        score: 0,
       }).save();
 
       testScore = await new ScoreModel({
-        name: 'Player 1',
-        value: 200,
+        forename: 'Player 1',
+        score: 200,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 2',
-        value: 5,
+        forename: 'Player 2',
+        score: 5,
       }).save();
     });
 
@@ -189,8 +189,8 @@ describe('ScoreController', () => {
 
       expect(status).toEqual(200);
       expect(body).toMatchObject({
-        name: 'Player 1',
-        value: 200,
+        forename: 'Player 1',
+        score: 200,
         rank: 1,
       });
     });
@@ -199,28 +199,28 @@ describe('ScoreController', () => {
   describe('POST /api/scores', () => {
     beforeAll(async () => {
       await new ScoreModel({
-        name: 'Player 0',
-        value: 0,
+        forename: 'Player 0',
+        score: 0,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 1',
-        value: 200,
+        forename: 'Player 1',
+        score: 200,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 2',
-        value: 5,
+        forename: 'Player 2',
+        score: 5,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 3',
-        value: 2000,
+        forename: 'Player 3',
+        score: 2000,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 4',
-        value: 1500,
+        forename: 'Player 4',
+        score: 1500,
         category: 'hard',
       }).save();
     });
@@ -229,7 +229,7 @@ describe('ScoreController', () => {
 
     it('should return an 400 status', async () => {
       const { status } = await request.post('/api/scores').send({
-        name: 'wrong',
+        forename: 'wrong',
       });
 
       expect(status).toEqual(400);
@@ -237,15 +237,15 @@ describe('ScoreController', () => {
 
     it('should add a score', async () => {
       const { body, status } = await request.post('/api/scores').send({
-        name: 'New Player',
-        value: 1750,
+        forename: 'New Player',
+        score: 1750,
       });
 
       expect(status).toEqual(201);
 
       expect(body).toMatchObject({
-        name: 'New Player',
-        value: 1750,
+        forename: 'New Player',
+        score: 1750,
         rank: 2,
       });
     });
@@ -256,26 +256,26 @@ describe('ScoreController', () => {
 
     beforeAll(async () => {
       await new ScoreModel({
-        name: 'Player 0',
-        value: 0,
+        forename: 'Player 0',
+        score: 0,
       }).save();
 
       testScore = await new ScoreModel({
-        name: 'Player 1',
-        value: 200,
+        forename: 'Player 1',
+        score: 200,
       }).save();
 
       await new ScoreModel({
-        name: 'Player 2',
-        value: 5,
+        forename: 'Player 2',
+        score: 5,
       }).save();
     });
 
     it('should return a 404 error', async () => {
       const fakeId = new mongoose.Types.ObjectId();
       const { status } = await request.put(`/api/scores/${fakeId}`).send({
-        name: 'wrong',
-        value: 1000,
+        forename: 'wrong',
+        score: 1000,
       });
 
       expect(status).toEqual(404);
@@ -284,15 +284,15 @@ describe('ScoreController', () => {
     it('should update a score', async () => {
       // eslint-disable-next-line no-underscore-dangle
       const { status, body } = await request.put(`/api/scores/${testScore._id.toString()}`).send({
-        name: 'Updated Player 1',
-        value: 200,
+        forename: 'Updated Player 1',
+        score: 200,
       });
 
       expect(status).toEqual(200);
 
       expect(body).toMatchObject({
-        name: 'Updated Player 1',
-        value: 200,
+        forename: 'Updated Player 1',
+        score: 200,
         rank: 1,
       });
     });
@@ -303,8 +303,8 @@ describe('ScoreController', () => {
 
     beforeAll(async () => {
       testScore = await new ScoreModel({
-        name: 'Player 1',
-        value: 200,
+        forename: 'Player 1',
+        score: 200,
       }).save();
     });
 
