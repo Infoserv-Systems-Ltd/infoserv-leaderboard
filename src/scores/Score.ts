@@ -34,6 +34,12 @@ export class Score {
   @Groups('read', 'create', 'update')
   public score: number;
 
+  // ?: Set to optional. If the player submits and incorrect Code Sprint solution, their code_sprint_time is set to zero.
+  @Required()
+  @Property()
+  @Groups('read', 'create', 'update')
+  public code_sprint_time: number;
+
   @Groups('read')
   public rank: number;
 
