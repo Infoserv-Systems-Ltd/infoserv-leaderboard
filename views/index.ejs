@@ -1,54 +1,67 @@
 <%- include('./_includes/header'); -%>
-<main class="highscore__main">
-    <h3 class="highscore__leaderboard highscore__leaderboard--category">
-        leader<span>board</span>
-    </h3>
+    <main class="highscore__main">
+        <h3 class="highscore__leaderboard highscore__leaderboard--category">
+            leader<span>board</span>
+        </h3>
 
-    <% if (locals.category) { %>
-        <h4 class="highscore__category"><%= category %></h4>
-    <% } %>
+        <% if (locals.category) { %>
+            <h4 class="highscore__category">
+                <%= category %>
+            </h4>
+            <% } %>
 
-    <div class="highscore__scores">
-        <% scores.forEach((score, index) => { %>
-            <a class="score" href="/score/<%= score._id %>">
-                <div class="score__name">
-                    <div class="score__position"><%= score.rank %></div>
-                    <div class="score__info">
-                        <p><%= score.forename %> <%= score.surname %></p>
-                        <p class="score__date"><%= $day(score.createdAt).fromNow() %></p>
-                    </div>
+                <div class="highscore__scores">
+                    <% scores.forEach((score, index)=> { %>
+                        <a class="score" href="/score/<%= score._id %>">
+                            <div class="score__name">
+                                <div class="score__position">
+                                    <%= score.rank %>
+                                </div>
+                                <div class="score__info">
+                                    <p>
+                                        <%= score.forename %>
+                                            <%= score.surname %>
+                                    </p>
+                                    <p class="score__date">
+                                        Played <%= $day(score.createdAt).fromNow() %> ago
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="score__value">
+                                <div>
+                                    <p >
+                                        Scored <%= score.score %>
+                                    </p>
+                                    <p class="score__code_sprint_time">
+                                        Code Sprint completed in <%= score.code_sprint_time %> seconds
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        <% }) %>
+
+                            <% if (pages> 1) { %>
+                                <div class="pagination">
+                                    <a class="pagination__link" <% if (page> 1) { %>
+                                        href="/?page=<%= page - 1 %>
+                                            <%= locals.category ? `&category=${category}` : '' %>"
+                                                <% } %>
+                                                    >
+                                                    previous
+                                    </a>
+                                    <p class="pagination__page">
+                                        <%= page %> / <%= pages %>
+                                    </p>
+                                    <a class="pagination__link" <% if (page < pages) { %>
+                                        href="/?page=<%= page + 1 %>
+                                            <%= locals.category ? `&category=${category}` : '' %>"
+                                                <% } %>
+                                                    >
+                                                    next
+                                    </a>
+                                </div>
+                                <% } %>
                 </div>
-                <div class="score__value">
-                    <div><%= score.value %></div>
-                    <div></div>
-                </div>
-            </a>
-        <% }) %>
+    </main>
 
-        <% if (pages > 1) { %>
-            <div class="pagination">
-                <a 
-                    class="pagination__link" 
-                    <% if (page > 1) { %>  
-                        href="/?page=<%= page - 1 %><%= locals.category ? `&category=${category}` : '' %>"
-                    <% } %>
-                >
-                    previous
-                </a>
-                <p class="pagination__page">
-                    <%= page %> / <%= pages %>
-                </p>
-                <a 
-                    class="pagination__link" 
-                    <% if (page < pages) { %> 
-                        href="/?page=<%= page + 1 %><%= locals.category ? `&category=${category}` : '' %>"
-                    <% } %>
-                >
-                    next
-                </a>
-            </div>
-        <% } %>
-    </div>
-</main>
-
-<%- include('./_includes/footer'); -%>
+    <%- include('./_includes/footer'); -%>

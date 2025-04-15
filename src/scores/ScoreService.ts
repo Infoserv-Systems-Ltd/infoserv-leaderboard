@@ -30,7 +30,18 @@ export class ScoreService {
 
     query.push({
       $setWindowFields: {
-        sortBy: { value: -1 },
+        sortBy: { code_sprint_time: 1 },
+        output: {
+          rank: {
+            $rank: {},
+          },
+        },
+      },
+    });
+
+    query.push({
+      $setWindowFields: {
+        sortBy: { score: -1 },
         output: {
           rank: {
             $rank: {},
