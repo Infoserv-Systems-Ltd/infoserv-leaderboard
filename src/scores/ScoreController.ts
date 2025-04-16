@@ -18,7 +18,7 @@ export class ScoreController {
   private scoreService: ScoreService;
 
   @Get('/all')
-  @Returns(200, Array).Of(Score).Groups('read')
+  @(Returns(200, Array).Of(Score).Groups('read'))
   public get(
     @QueryParams() query?: ScoreHttpQuery,
   ): Promise<Score[]> {
@@ -26,7 +26,7 @@ export class ScoreController {
   }
 
   @Get('/me')
-  @Returns(200, Array).Of(Score).Groups('read')
+  @(Returns(200, Array).Of(Score).Groups('read'))
   public getMyScores(
     @Request() req: Request,
       @QueryParams() query?: ScoreHttpQuery,
@@ -38,8 +38,8 @@ export class ScoreController {
   }
 
   @Get('/:id')
-  @Returns(200, Score).Groups('read')
-  @Returns(404, NotFound).Description('Score not found')
+  @(Returns(200, Score).Groups('read'))
+  @(Returns(404, NotFound).Description('Score not found'))
   public async getById(@PathParams('id') id: string) {
     const score = await this.scoreService.getScore(id);
 
@@ -51,7 +51,7 @@ export class ScoreController {
   }
 
   @Post('/')
-  @Returns(201, Score).Groups('read')
+  @(Returns(201, Score).Groups('read'))
   public post(
   @BodyParams() @Groups('create') score: Score,
     @Request() req: Request,
@@ -63,8 +63,8 @@ export class ScoreController {
   }
 
   @Put('/:id')
-  @Returns(200, Score).Groups('read')
-  @Returns(404, NotFound).Description('Score not found')
+  @(Returns(200, Score).Groups('read'))
+  @(Returns(404, NotFound).Description('Score not found'))
   public async put(@PathParams('id') id: string, @BodyParams() @Groups('update') score: Score) {
     const oldScore = await this.scoreService.getScore(id);
 
@@ -76,7 +76,7 @@ export class ScoreController {
   }
 
   @Delete('/:id')
-  @Returns(404, NotFound).Description('Score not found')
+  @(Returns(404, NotFound).Description('Score not found'))
   public async delete(@PathParams('id') id: string) {
     const oldScore = await this.scoreService.getScore(id);
 
