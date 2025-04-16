@@ -240,7 +240,7 @@ a {
 
 .score__value {
   display: flex;
-  align-items: center;
+  align-items: right;
   color: var(--highscore-white-color);
 }
 
@@ -249,6 +249,12 @@ a {
 }
 
 .score__date {
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.score__code_sprint_time {
   font-size: 14px;
   font-weight: 400;
   font-style: italic;
