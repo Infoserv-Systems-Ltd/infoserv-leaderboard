@@ -40,11 +40,9 @@
                             <div>
                                 <% if (index == 0) { %>
                                     <img src="<%= locals.custom.first_place %>" alt="">
-                                <% } %>
-                                <% if (index == 1) { %>
                                     <img src="<%= locals.custom.second_place %>" alt="">
                                 <% } %>
-                                <% if (index == 2) { %>
+                                <% if (index > 0 && index < 5) { %>
                                     <img src="<%= locals.custom.third_place %>" alt="">
                                 <% } %>
                             </div>
