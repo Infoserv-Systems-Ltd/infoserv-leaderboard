@@ -89,8 +89,11 @@ const {
     custom: {
       title: HIGHSCORE_TITLE || 'HighScore',
       description: HIGHSCORE_DESCRIPTION || 'Open Source leaderboard',
-      logo: HIGHSCORE_LOGO_URL || '/logo.png',
+      logo: HIGHSCORE_LOGO_URL || '/logo.svg',
       favicon: HIGHSCORE_FAVICON_URL || '/favicon.ico',
+      first_place: '/first_place.jpg',
+      second_place: '/second_place.jpg',
+      third_place: '/third_place.jpg',
       css: HIGHSCORE_CSS_URL || '',
     },
     download: {

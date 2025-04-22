@@ -37,6 +37,17 @@
                                     </p>
                                 </div>
                             </div>
+                            <div>
+                                <% if (index == 0) { %>
+                                    <img src="<%= locals.custom.first_place %>" alt="">
+                                <% } %>
+                                <% if (index == 1) { %>
+                                    <img src="<%= locals.custom.second_place %>" alt="">
+                                <% } %>
+                                <% if (index == 2) { %>
+                                    <img src="<%= locals.custom.third_place %>" alt="">
+                                <% } %>
+                            </div>
                         </a>
                         <% }) %>
 
