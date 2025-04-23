@@ -11,7 +11,7 @@
             <% } %>
 
                 <div class="highscore__scores">
-                    <% scores.forEach((score, index)=> { %>
+                    <% scores.slice(0, 5).forEach((score, index)=> { %>
                         <a class="score" href="/score/<%= score._id %>">
                             <div class="score__name">
                                 <div class="score__position">
