@@ -91,9 +91,9 @@ const {
       description: HIGHSCORE_DESCRIPTION || 'Open Source leaderboard',
       logo: HIGHSCORE_LOGO_URL || '/logo.svg',
       favicon: HIGHSCORE_FAVICON_URL || '/favicon.ico',
-      first_place: '/first_place.jpg',
-      second_place: '/second_place.jpg',
-      third_place: '/third_place.jpg',
+      first_place: '/first_place.png',
+      second_place: '/second_place.png',
+      third_place: '/third_place.png',
       css: HIGHSCORE_CSS_URL || '',
     },
     download: {
