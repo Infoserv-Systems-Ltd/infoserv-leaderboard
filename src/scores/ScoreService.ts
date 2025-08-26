@@ -30,10 +30,10 @@ export class ScoreService {
 
     query.push({
       $setWindowFields: {
-        sortBy: { code_sprint_time: 1 },
+        sortBy: { total_time: 1 },
         output: {
           rank: {
-            $rank: {},
+            $documentNumber: {},
           },
         },
       },
@@ -44,7 +44,7 @@ export class ScoreService {
         sortBy: { score: -1 },
         output: {
           rank: {
-            $rank: {},
+            $documentNumber: {},
           },
         },
       },
